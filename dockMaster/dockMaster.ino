@@ -32,8 +32,8 @@ const char *passw = "peraridedock1";
 const char *dockName = "DOCK1";
 const int port = 1883;
 
-const char *dockUnlockTopic = "PeraRide/unlock/dock1";
-const char *redockTopic = "PeraRide/redock/lock2";
+const char *dockUnlockTopic = "PeraRide/unlock/dock2";
+const char *redockTopic = "PeraRide/redock/lock";
 
 long lastReconnectAttempt = 0;
 
@@ -111,7 +111,7 @@ void loop() {
         if (strcmp(rec, "nullnullnul") && strcmp(rec, "")) {
             char pubTopic[30] = "";
             sprintf(pubTopic,"%s%d",redockTopic,node);
-            mqtt.publish(strcat(pubTopic,node), rec);
+            mqtt.publish(pubTopic, rec);
             Serial.println(pubTopic);
         }
         delay(250);
